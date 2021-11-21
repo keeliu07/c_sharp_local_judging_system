@@ -29,6 +29,7 @@
         </Grid>
         <Grid Grid.Row="1" Background="GhostWhite" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -39,14 +40,21 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"/>
                     <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Language: C"/>
-                <Button Grid.Column="1" Content="Submit"/>
+                <Button Grid.Column="1" Content="Upload" Click="onUploadFile"/>
+                <Button Grid.Column="2" Content="Submit" Click="onSubmitProblem"/>
             </Grid>
-            <TextBox Grid.Row="1" Name="CodeEditor" TextWrapping="Wrap"
+            <TextBox Grid.Row="1" x:Name="CodeEditor" TextWrapping="Wrap"
               AcceptsReturn="True" VerticalScrollBarVisibility="Visible">
                 This TextBox will allow the user to enter multiple lines of text.  When the RETURN key is pressed, 
                 or when typed text reaches the edge of the text box, a new line is automatically inserted.
+            </TextBox>
+            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="TestResultBox"></TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="Terminal" TextWrapping="Wrap"
+              AcceptsReturn="True" VerticalScrollBarVisibility="Visible">
+             
             </TextBox>
         </Grid>
     </Grid>

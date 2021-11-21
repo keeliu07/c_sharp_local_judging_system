@@ -32,7 +32,7 @@ namespace LocalJudgingSystem
         private void StudentProblemList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ProgramProblem selectedProblem = judgeSystem.browse_problem(StudentProblemList.SelectedIndex);
-            ProblemPage problemPage = new ProblemPage(selectedProblem);
+            ProblemPage problemPage = new ProblemPage(judgeSystem, selectedProblem);
             NavigationService.Navigate(problemPage);
         }
     }

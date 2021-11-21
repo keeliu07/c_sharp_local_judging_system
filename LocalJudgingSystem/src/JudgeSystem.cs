@@ -20,8 +20,8 @@ namespace LocalJudgingSystem
         } // constructor
         private void initialization() {
             problems = new List<ProgramProblem>();
-            problems.Add(new ProgramProblem("1","Print Hello World", "Output text \"Hello World\" ", 0, 30, 100));
-            problems.Add(new ProgramProblem("2", "Is Prime Number", "Check if an integer is a prime number", 1, 50, 150));
+            problems.Add(new ProgramProblem("1","Print Hello World", "Output text \"Hello World\" ","N/A", "Hello World", 0, 30, 100));
+            problems.Add(new ProgramProblem("2", "Is Prime Number", "Check if an integer is a prime number", "3", "Prime", 1, 50, 150));
             
             users = new List<User>();
             users.Add(new Admin("1", "Admin", "Admin", 1));

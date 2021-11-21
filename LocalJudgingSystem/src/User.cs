@@ -10,6 +10,7 @@ namespace LocalJudgingSystem.src
     {
         protected string ID, name, password;
         protected int usertype;
+        protected List<ProgramProblem> submitted_problems;
 
         public User() { }
         public User(string ID, string name, string password, int usertype) {
@@ -17,9 +18,11 @@ namespace LocalJudgingSystem.src
             this.name = name;
             this.password = password;
             this.usertype = usertype;
+            submitted_problems = new List<ProgramProblem>();
         }
         // runtime polymorphism
-
+        public string Username { get { return name; } }
+        public string Password { get { return password; } }
         public string UserType
         { // Data abstraction, read-only property
             get
@@ -30,12 +33,10 @@ namespace LocalJudgingSystem.src
             }
         }
 
-        public string Password{ get { return password; } }
-
-        public string Username { get { return name; } }
-
         public virtual void edit_profile(string name, string password) { }
-        public void submit_problem(string problemID) { }
+        public void submit_problem(ProgramProblem problem) {
+            submitted_problems.Add(problem);
+        }
         public void select_problem(string problemID) { }
         public void upload_program(string problemID) { }
     }

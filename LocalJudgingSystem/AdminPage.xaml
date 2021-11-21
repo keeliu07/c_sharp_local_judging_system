@@ -12,10 +12,10 @@
         <ListView Name="AdminProblemList">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="#" Width="80" />
+                    <GridViewColumn Header="#" Width="80" DisplayMemberBinding="{Binding ProblemID}"/>
                     <GridViewColumn Header="Title" Width="330" DisplayMemberBinding="{Binding Title}"/>
                     <GridViewColumn Header="Level" Width="80" DisplayMemberBinding="{Binding Difficulty}"/>
-                    <GridViewColumn Header="Total" Width="80"/>
+                    <GridViewColumn Header="Trial" Width="80" DisplayMemberBinding="{Binding Trial}"/>
                     <GridViewColumn Header="AC Rate" Width="80" DisplayMemberBinding="{Binding ACRate}"/>
                     <GridViewColumn Header="Actions" Width="150">
                         <GridViewColumn.CellTemplate>

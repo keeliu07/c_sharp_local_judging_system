@@ -34,7 +34,7 @@
                 Register
             </Button>
             <TextBlock Grid.Column="5" x:Name="LoginUserTextBlock"></TextBlock>
-            <Button x:Name="ViewProfileButton" Grid.Column="6" Click="OnClickEditProfile" Visibility="Collapsed">
+            <Button x:Name="ViewProfileButton" Grid.Column="6" Click="OnClickViewProfile" Visibility="Collapsed">
                 View Profile
             </Button>
             <Button x:Name="LogoutButton" Grid.Column="7" Click="OnClickLogout" Visibility="Collapsed">

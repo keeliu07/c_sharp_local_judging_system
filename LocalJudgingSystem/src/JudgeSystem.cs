@@ -20,26 +20,37 @@ namespace LocalJudgingSystem
         } // constructor
         private void initialization() {
             problems = new List<ProgramProblem>();
-            problems.Add(new ProgramProblem("1","Test Problem 1", "Hi", 0, 30, 100));
-            problems.Add(new ProgramProblem("2", "Test Problem 2", "Hi", 1, 50, 150));
+            problems.Add(new ProgramProblem("1","Print Hello World", "Output text \"Hello World\" ", 0, 30, 100));
+            problems.Add(new ProgramProblem("2", "Is Prime Number", "Check if an integer is a prime number", 1, 50, 150));
             
             users = new List<User>();
-            users.Add(new User("1", "admin", "admin", 1));
+            users.Add(new Admin("1", "Admin", "Admin", 1));
+            users.Add(new Student("2", "ChanSiuMing", "20000101", 2));
+            users.Add(new Student("3", "ChanTaiMing", "asdfghjkl;’", 2));
+            users.Add(new Student("4", "CatChu", "catcatcat", 2));
         }
 
-        public void registerUser(string username, string password, int usertype)
+        private User? createUser(string username, string password, int usertype)
         {
             int user_id = users.Count + 1;
             User? newUser = null;
             switch (usertype)
             {
-                case 1: newUser = new Admin(user_id.ToString(), username, password, usertype);
-                        break;
-                case 2: newUser = new Student(user_id.ToString(), username, password, usertype);
-                        break;
+                case 1:
+                    newUser = new Admin(user_id.ToString(), username, password, usertype);
+                    break;
+                case 2:
+                    newUser = new Student(user_id.ToString(), username, password, usertype);
+                    break;
                 default:
                     break;
             }
+            return newUser;
+        }
+
+        public void registerUser(string username, string password, int usertype)
+        {
+            User? newUser = createUser(username, password, usertype);
             if (newUser != null)
             {
                 users.Add(newUser);

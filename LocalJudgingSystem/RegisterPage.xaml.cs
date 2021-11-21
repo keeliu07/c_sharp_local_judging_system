@@ -29,7 +29,17 @@ namespace LocalJudgingSystem
 
         private void OnClickRegisterButton(object sender, RoutedEventArgs e)
         {
-            judgeSystem.login(UsernameBox.Text, PasswordBox.Password.ToString());
+            int usertype = 0;
+            switch (UsertypeBox.Text)
+            {
+                case "Teacher/TA":
+                    usertype = 1;
+                    break;
+                case "Student":
+                    usertype = 2;
+                    break;
+            }
+            judgeSystem.registerUser(UsernameBox.Text, PasswordBox.Password.ToString(), usertype);
         }
     }
 }

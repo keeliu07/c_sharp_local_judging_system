@@ -29,7 +29,29 @@ namespace LocalJudgingSystem
 
         private void OnClickLoginButton(object sender, RoutedEventArgs e)
         {
-            judgeSystem.login(UsernameBox.Text, PasswordBox.Password.ToString());
+            var user = judgeSystem.login(UsernameBox.Text, PasswordBox.Password.ToString());
+            if (user != null)
+            {
+                MainWindow MainWindowObj = (MainWindow)Window.GetWindow(this);
+                switch (user.UserType)
+                {
+                    case "Admin":
+                        MainWindowObj.MainFrame.Content = new AdminPage(judgeSystem);
+                        break;
+                    case "Student":
+                        MainWindowObj.MainFrame.Content = new ProblemsListPage(judgeSystem);
+                        break;
+                    default:
+                        break;
+                }
+                MainWindowObj.LoginButton.Visibility = Visibility.Collapsed;
+                MainWindowObj.RegisterButton.Visibility = Visibility.Collapsed;
+                MainWindowObj.LogoutButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("Either User is not exist or Invalid Username or Invalid Password");
+            }
         }
     }
 }

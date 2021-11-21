@@ -10,11 +10,13 @@ namespace LocalJudgingSystem.src
     {
         protected string ID, name, password;
         protected int usertype;
-        public User() { } // constructors
-        public User(string ID, string name, string password) {
+
+        public User() { }
+        public User(string ID, string name, string password, int usertype) {
             this.ID = ID;
             this.name = name;
             this.password = password;
+            this.usertype = usertype;
         }
         // runtime polymorphism
 
@@ -22,11 +24,15 @@ namespace LocalJudgingSystem.src
         { // Data abstraction, read-only property
             get
             {
-                if (usertype == 0) return "Admin";
-                else if (usertype == 1) return "Student";
+                if (usertype == 1) return "Admin";
+                else if (usertype == 2) return "Student";
                 return "Undefined";
             }
         }
+
+        public string Password{ get { return password; } }
+
+        public string Username { get { return name; } }
 
         public virtual void edit_profile(string name, string password) { }
         public void submit_problem(string problemID) { }

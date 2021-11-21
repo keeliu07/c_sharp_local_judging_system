@@ -20,16 +20,28 @@ namespace LocalJudgingSystem
     {
         JudgeSystem judgeSystem = new JudgeSystem();
         ProblemsListPage problemsListPage;
+        MainWindow MainWindowObj;
         public MainWindow()
         {
             InitializeComponent();
+            MainWindowObj = (MainWindow)Window.GetWindow(this);
+            MainWindowObj.LogoutButton.Visibility = Visibility.Collapsed;
             problemsListPage = new ProblemsListPage(judgeSystem);
-            MainFrame.Content = problemsListPage; 
+            MainFrame.Content = problemsListPage;
         }
 
         void OnClickLogin(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new LoginPage(judgeSystem);
+        }
+
+        void OnClickLogout(object sender, RoutedEventArgs e)
+        {
+            judgeSystem.logout();
+            MainFrame.Content = new ProblemsListPage(judgeSystem);
+            MainWindowObj.LoginButton.Visibility = Visibility.Visible;
+            MainWindowObj.RegisterButton.Visibility = Visibility.Visible;
+            MainWindowObj.LogoutButton.Visibility = Visibility.Collapsed;
         }
 
         void OnClickRegister(object sender, RoutedEventArgs e)

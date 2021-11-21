@@ -24,16 +24,24 @@ namespace LocalJudgingSystem
             problems.Add(new ProgramProblem("2", "Test Problem 2", "Hi", 1, 50, 150));
             
             users = new List<User>();
-            users.Add(new User("1", "admin", "admin"));
+            users.Add(new User("1", "admin", "admin", 1));
         }
 
-        public void registerUser()
+        public void registerUser(string username, string password, int usertype)
         {
-            User newUser = new User();
+            int user_id = users.Count + 1;
+            User newUser = new User(user_id.ToString(),username, password, usertype);
+            users.Add(newUser);
         }
 
-        public void login(string username, string password) {
-
+        public User? login(string username, string password) {
+            User? target = users.Find(x => x.Username == username && x.Password == password);
+            if (target != null)
+            {
+                System.Diagnostics.Debug.WriteLine("Login as {0}", username);
+                loginUser = target;
+            }
+            return target;
         }
 
         public void logout() { 

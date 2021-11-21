@@ -42,7 +42,7 @@ namespace LocalJudgingSystem.src
 
     public class Admin : User
     {
-        public Admin() { } // constructor
+        public Admin(string ID, string name, string password, int usertype) : base(ID, name, password, usertype){ } // constructor
         public override void edit_profile(string name, string password) { }
         void create_problem() { }
         void check_record() { }
@@ -51,7 +51,7 @@ namespace LocalJudgingSystem.src
 
     public class Student : User
     {
-        public Student() { } // constructor
+        public Student(string ID, string name, string password, int usertype) : base(ID, name, password, usertype) { } // constructor
         public override void edit_profile(string name, string password) { }
     }
 }

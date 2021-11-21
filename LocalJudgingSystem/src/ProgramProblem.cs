@@ -9,7 +9,7 @@ namespace LocalJudgingSystem.src
     public class ProgramProblem
     {
         protected string ID, title, content, author, test_input, test_output;
-        protected int trial, difficulty, timeLimit, memoryLimit;
+        protected int trial, accepted, difficulty, timeLimit, memoryLimit;
         protected double acRate, tags;
         protected bool isLive;
 
@@ -21,6 +21,9 @@ namespace LocalJudgingSystem.src
             this.difficulty = difficulty;
             this.timeLimit = timeLimit;
             this.memoryLimit = memoryLimit;
+            trial = 0;
+            accepted = 0;
+            isLive = true;
         } // constructors
         public ProgramProblem(string filename) { }
         public string Title { get {return title;} } // read-only property

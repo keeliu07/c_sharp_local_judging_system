@@ -17,13 +17,6 @@
                     <GridViewColumn Header="Level" Width="80" DisplayMemberBinding="{Binding Difficulty}"/>
                     <GridViewColumn Header="Total" Width="80"/>
                     <GridViewColumn Header="AC Rate" Width="80" DisplayMemberBinding="{Binding ACRate}"/>
-                    <GridViewColumn Header="Actions" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Edit" VerticalAlignment="Center"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

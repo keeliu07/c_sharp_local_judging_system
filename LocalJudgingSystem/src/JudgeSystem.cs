@@ -30,8 +30,20 @@ namespace LocalJudgingSystem
         public void registerUser(string username, string password, int usertype)
         {
             int user_id = users.Count + 1;
-            User newUser = new User(user_id.ToString(),username, password, usertype);
-            users.Add(newUser);
+            User? newUser = null;
+            switch (usertype)
+            {
+                case 1: newUser = new Admin(user_id.ToString(), username, password, usertype);
+                        break;
+                case 2: newUser = new Student(user_id.ToString(), username, password, usertype);
+                        break;
+                default:
+                    break;
+            }
+            if (newUser != null)
+            {
+                users.Add(newUser);
+            }
         }
 
         public User? login(string username, string password) {

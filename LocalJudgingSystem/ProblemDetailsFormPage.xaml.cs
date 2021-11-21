@@ -1,5 +1,4 @@
-﻿using LocalJudgingSystem.src;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,13 @@ using System.Windows.Shapes;
 namespace LocalJudgingSystem
 {
     /// <summary>
-    /// Interaction logic for ProblemPage.xaml
+    /// Interaction logic for ProblemDetailsFormPage.xaml
     /// </summary>
-    public partial class ProblemPage : Page
+    public partial class ProblemDetailsFormPage : Page
     {
-        ProgramProblem problem;
-        public ProblemPage(ProgramProblem problem)
+        public ProblemDetailsFormPage()
         {
             InitializeComponent();
-            this.problem = problem;
         }
     }
 }

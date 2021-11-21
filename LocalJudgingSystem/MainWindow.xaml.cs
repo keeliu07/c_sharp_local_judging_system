@@ -18,16 +18,14 @@ namespace LocalJudgingSystem
 {
     public partial class MainWindow : Window
     {
-        JudgeSystem judgeSystem = new JudgeSystem();
-        ProblemsListPage problemsListPage;
+        JudgeSystem judgeSystem;
         MainWindow MainWindowObj;
         public MainWindow()
         {
             InitializeComponent();
+            judgeSystem = new JudgeSystem();
             MainWindowObj = (MainWindow)Window.GetWindow(this);
-            MainWindowObj.LogoutButton.Visibility = Visibility.Collapsed;
-            problemsListPage = new ProblemsListPage(judgeSystem);
-            MainFrame.Content = problemsListPage;
+            MainFrame.Content = new LoginPage(judgeSystem); ;
         }
 
         void OnClickLogin(object sender, RoutedEventArgs e)
@@ -41,13 +39,21 @@ namespace LocalJudgingSystem
             MainFrame.Content = new LoginPage(judgeSystem);
             MainWindowObj.LoginButton.Visibility = Visibility.Visible;
             MainWindowObj.RegisterButton.Visibility = Visibility.Visible;
+            MainWindowObj.ViewProblemListButton.Visibility = Visibility.Collapsed;
+            MainWindowObj.ViewProfileButton.Visibility = Visibility.Collapsed;
             MainWindowObj.LogoutButton.Visibility = Visibility.Collapsed;
             MainWindowObj.CreateProblemButton.Visibility = Visibility.Collapsed;
+            MainWindowObj.LoginUserTextBlock.Text = "";
         }
 
         void OnClickRegister(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new RegisterPage(judgeSystem);
+        }
+
+        void OnClickViewProfile(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new UserProfilePage(judgeSystem);
         }
 
         void OnClickProblems(object sender, RoutedEventArgs e)
@@ -58,7 +64,7 @@ namespace LocalJudgingSystem
             }
             else
             {
-                MainFrame.Content = problemsListPage;
+                MainFrame.Content = new ProblemsListPage(judgeSystem);
             }
         }
 

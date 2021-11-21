@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocalJudgingSystem.src;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +21,18 @@ namespace LocalJudgingSystem
     /// </summary>
     public partial class ProblemsListPage : Page
     {
+        JudgeSystem judgeSystem;
         public ProblemsListPage(JudgeSystem judgeSystem)
         {
             InitializeComponent();
+            this.judgeSystem = judgeSystem;
             StudentProblemList.ItemsSource = judgeSystem.browse_problem_list();
         }
 
         private void StudentProblemList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ProblemPage problemPage = new ProblemPage();
+            ProgramProblem selectedProblem = judgeSystem.browse_problem(StudentProblemList.SelectedIndex);
+            ProblemPage problemPage = new ProblemPage(selectedProblem);
             NavigationService.Navigate(problemPage);
         }
     }

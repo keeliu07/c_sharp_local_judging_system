@@ -47,7 +47,10 @@ namespace LocalJudgingSystem
                 }
                 MainWindowObj.LoginButton.Visibility = Visibility.Collapsed;
                 MainWindowObj.RegisterButton.Visibility = Visibility.Collapsed;
+                MainWindowObj.ViewProblemListButton.Visibility = Visibility.Visible;
                 MainWindowObj.LogoutButton.Visibility = Visibility.Visible;
+                MainWindowObj.ViewProfileButton.Visibility = Visibility.Visible;
+                MainWindowObj.LoginUserTextBlock.Text = string.Format("Hi, {0}", user.Username);
             }
             else
             {

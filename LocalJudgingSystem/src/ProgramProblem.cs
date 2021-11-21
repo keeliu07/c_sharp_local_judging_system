@@ -26,6 +26,8 @@ namespace LocalJudgingSystem.src
             isLive = true;
         } // constructors
         public ProgramProblem(string filename) { }
+
+        public string ProblemID { get { return ID; } } // read-only property
         public string Title { get {return title;} } // read-only property
         public string Content { get { return content; } } // read-only property
         public string Author { get { return author; } } // read-only property

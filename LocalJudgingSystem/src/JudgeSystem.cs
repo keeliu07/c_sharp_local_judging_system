@@ -75,9 +75,10 @@ namespace LocalJudgingSystem
             return problems;
         }
 
-        public void browse_problem() { }
+        public ProgramProblem browse_problem(int index) {
+            return problems[index];
+        }
         public void browse_statistics() { }
-        public void load_admin_page() { }
 
     }
 }

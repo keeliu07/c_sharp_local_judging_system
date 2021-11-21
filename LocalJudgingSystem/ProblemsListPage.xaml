@@ -9,7 +9,7 @@
       Title="ProblemsList">
 
     <Grid>
-        <ListView Name="problemList" MouseDoubleClick="problemList_MouseDoubleClick">
+        <ListView Name="StudentProblemList" MouseDoubleClick="StudentProblemList_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="#" Width="80" />

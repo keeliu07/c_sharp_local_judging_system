@@ -37,6 +37,7 @@ namespace LocalJudgingSystem
                 {
                     case "Admin":
                         MainWindowObj.MainFrame.Content = new AdminPage(judgeSystem);
+                        MainWindowObj.CreateProblemButton.Visibility = Visibility.Visible;
                         break;
                     case "Student":
                         MainWindowObj.MainFrame.Content = new ProblemsListPage(judgeSystem);

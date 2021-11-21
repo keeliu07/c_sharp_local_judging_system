@@ -23,10 +23,10 @@ namespace LocalJudgingSystem
         public ProblemsListPage(JudgeSystem judgeSystem)
         {
             InitializeComponent();
-            problemList.ItemsSource = judgeSystem.browse_problem_list();
+            StudentProblemList.ItemsSource = judgeSystem.browse_problem_list();
         }
 
-        private void problemList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void StudentProblemList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ProblemPage problemPage = new ProblemPage();
             NavigationService.Navigate(problemPage);

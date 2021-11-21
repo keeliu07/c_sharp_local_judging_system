@@ -24,13 +24,16 @@
             <Button Grid.Column="0" Click="OnClickProblems">
                 Problems
             </Button>
+            <Button x:Name="CreateProblemButton" Grid.Column="1" Click="OnClickProblems" Visibility="Collapsed">
+                Create Problem
+            </Button>
             <Button x:Name="LoginButton" Grid.Column="6" Click="OnClickLogin">
                 Login
             </Button>
             <Button x:Name="RegisterButton" Grid.Column="7" Click="OnClickRegister">
                 Register
             </Button>
-            <Button x:Name="LogoutButton" Grid.Column="7" Click="OnClickLogout">
+            <Button x:Name="LogoutButton" Grid.Column="7" Click="OnClickLogout" Visibility="Collapsed">
                 Logout
             </Button>
         </Grid>

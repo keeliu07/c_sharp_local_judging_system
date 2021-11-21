@@ -38,10 +38,11 @@ namespace LocalJudgingSystem
         void OnClickLogout(object sender, RoutedEventArgs e)
         {
             judgeSystem.logout();
-            MainFrame.Content = new ProblemsListPage(judgeSystem);
+            MainFrame.Content = new LoginPage(judgeSystem);
             MainWindowObj.LoginButton.Visibility = Visibility.Visible;
             MainWindowObj.RegisterButton.Visibility = Visibility.Visible;
             MainWindowObj.LogoutButton.Visibility = Visibility.Collapsed;
+            MainWindowObj.CreateProblemButton.Visibility = Visibility.Collapsed;
         }
 
         void OnClickRegister(object sender, RoutedEventArgs e)
@@ -59,6 +60,10 @@ namespace LocalJudgingSystem
             {
                 MainFrame.Content = problemsListPage;
             }
+        }
+
+        private void OnClickCreateProblem(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

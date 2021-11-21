@@ -23,6 +23,8 @@ namespace LocalJudgingSystem
         public AdminPage(JudgeSystem judgeSystem)
         {
             InitializeComponent();
+            AdminProblemList.ItemsSource = judgeSystem.browse_problem_list();
+            MainWindow MainWindowObj = (MainWindow)Window.GetWindow(this);
         }
     }
 }

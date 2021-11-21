@@ -40,6 +40,8 @@ namespace LocalJudgingSystem
                     break;
             }
             judgeSystem.registerUser(UsernameBox.Text, PasswordBox.Password.ToString(), usertype);
+            MainWindow MainWindowObj = (MainWindow)Window.GetWindow(this);
+            MainWindowObj.MainFrame.Content = new LoginPage(judgeSystem);
         }
     }
 }

@@ -38,6 +38,7 @@ namespace LocalJudgingSystem
             {
                 user.submit_problem(problem);
                 (string output, Boolean pass) = problem.compileAndExecute(problem, CodeEditor.Text);
+                if (pass) problem.add_accepted();
                 TestResultBox.Text = string.Format("Pass or Not: {0}\n", pass);
                 Terminal.Text = output;
             }

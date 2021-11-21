@@ -13,8 +13,9 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="#" Width="80" DisplayMemberBinding="{Binding ProblemID}"/>
-                    <GridViewColumn Header="Title" Width="330" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Title" Width="250" DisplayMemberBinding="{Binding Title}"/>
                     <GridViewColumn Header="Level" Width="80" DisplayMemberBinding="{Binding Difficulty}"/>
+                    <GridViewColumn Header="Accpeted" Width="80" DisplayMemberBinding="{Binding Accepted}"/>
                     <GridViewColumn Header="Trial" Width="80" DisplayMemberBinding="{Binding Trial}"/>
                     <GridViewColumn Header="AC Rate" Width="80" DisplayMemberBinding="{Binding ACRate}"/>
                     <GridViewColumn Header="Actions" Width="150">

@@ -36,6 +36,7 @@ namespace LocalJudgingSystem.src
         public virtual void edit_profile(string name, string password) { }
         public void submit_problem(ProgramProblem problem) {
             submitted_problems.Add(problem);
+            problem.add_trial();
         }
         public void select_problem(string problemID) { }
         public void upload_program(string problemID) { }

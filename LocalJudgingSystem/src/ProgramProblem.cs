@@ -58,11 +58,18 @@ namespace LocalJudgingSystem.src
         }
         public double ACRate
         { // read-only property
-            get { return acRate; }
+            get { 
+                if(trial == 0) return 0.0;
+                return accepted/trial; }
         }
         public int Trial
         { // read-only property
             get { return trial; }
+        }
+
+        public int Accepted
+        { // read-only property
+            get { return accepted; }
         }
 
         [DllImport("user32.dll")]
@@ -142,6 +149,15 @@ namespace LocalJudgingSystem.src
         }
         public void edit_statistics(int trial, int accepted) {
             this.trial = trial;
+        }
+        public void add_trial()
+        {
+            trial++;
+        }
+
+        public void add_accepted()
+        {
+            accepted++;
         }
     }
 

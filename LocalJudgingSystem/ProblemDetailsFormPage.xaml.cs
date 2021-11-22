@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocalJudgingSystem.src;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,87 @@ namespace LocalJudgingSystem
     /// </summary>
     public partial class ProblemDetailsFormPage : Page
     {
-        public ProblemDetailsFormPage()
+        JudgeSystem judgeSystem;
+        ProgramProblem problem;
+        Boolean isCreation = false;
+        List<TestCase> testCases;
+        public ProblemDetailsFormPage(JudgeSystem judgeSystem)
         {
             InitializeComponent();
+            this.judgeSystem = judgeSystem;
+            TitleBox.Text = "Create Problem";
+            testCases = new List<TestCase>();
+            TestCaseList.ItemsSource = testCases;
+            isCreation = true;
+        }
+        public ProblemDetailsFormPage(JudgeSystem judgeSystem, ProgramProblem problem)
+        {
+            InitializeComponent();
+            this.judgeSystem = judgeSystem;
+            this.problem = problem;
+            testCases = problem.browse_test_cases();
+            TestCaseList.ItemsSource = testCases;
+            title.Text = problem.Title;
+            content.Text = problem.Content;
+            difficulty.Text = problem.Difficulty;
+            timelimit.Text = problem.TimeLimit.ToString();
+            memorylimit.Text = problem.MemoryLimit.ToString();
+        }
+
+        private void onClickSubmitButton(object sender, RoutedEventArgs e)
+        {
+            int diff = 0;
+            switch (difficulty.Text)
+            {
+                case "Easy":
+                    diff = 0;
+                    break;
+                case "Moderate":
+                    diff = 1;
+                    break;
+                case "Hard":
+                    diff = 2;
+                    break;
+            }
+            MainWindow MainWindowObj = (MainWindow)Window.GetWindow(this);
+            if (!isCreation && int.TryParse(timelimit.Text, out int time) && int.TryParse(memorylimit.Text, out int memory))
+            {
+                problem.edit_problem(title.Text, content.Text, diff, time, memory);
+                MainWindowObj.MainFrame.Content = new AdminPage(judgeSystem);
+            }
+            else if (isCreation && int.TryParse(timelimit.Text, out int time2) && int.TryParse(memorylimit.Text, out int memory2))
+            {
+                List<TestCase> testCases = new List<TestCase>();
+                testCases.Add(new TestCase("N/A", "Hello World"));
+                judgeSystem.add_problem(title.Text, content.Text, testCases, diff, time2, memory2);
+                MainWindowObj.MainFrame.Content = new AdminPage(judgeSystem);
+            }
+            else
+            {
+                MessageBox.Show("Diffculty and TimeLimit and MemoryLimit must be integers.");
+            }
+        }
+
+        private void onClickAddTestCase(object sender, RoutedEventArgs e)
+        {
+            if (TestInputBox != null && TestOutputBox != null)
+            {
+                testCases.Add(new TestCase(TestInputBox.Text, TestOutputBox.Text));
+                TestCaseList.Items.Refresh();
+                TestInputBox.Text = "";
+                TestOutputBox.Text = "";
+            }
+        }
+
+        private void onClickEditTestCase(object sender, RoutedEventArgs e)
+        {
+            testCases[TestCaseList.SelectedIndex].edit_testcase(TestInputBox.Text, TestOutputBox.Text);
+            TestCaseList.Items.Refresh();
+        }
+        private void onClickDeleteTestCase(object sender, RoutedEventArgs e)
+        {
+            testCases.RemoveAt(TestCaseList.SelectedIndex);
+            TestCaseList.Items.Refresh();
         }
     }
 }

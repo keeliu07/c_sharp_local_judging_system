@@ -20,8 +20,14 @@ namespace LocalJudgingSystem
         } // constructor
         private void initialization() {
             problems = new List<ProgramProblem>();
-            problems.Add(new ProgramProblem("1","Print Hello World", "Output text \"Hello World\" ","N/A", "Hello World", 0, 30, 100));
-            problems.Add(new ProgramProblem("2", "Is Prime Number", "Check if an integer is a prime number", "3", "Prime", 1, 50, 150));
+            List<TestCase> testCases = new List<TestCase>() ;
+            testCases.Add(new TestCase("N/A", "Hello World"));
+            problems.Add(new ProgramProblem("1", "Print Hello World", "Output text \"Hello World\" ", testCases, 0, 30, 100));
+            
+            testCases = new List<TestCase>();
+            testCases.Add(new TestCase( "3", "Prime"));
+            testCases.Add(new TestCase("2", "Not Prime"));
+            problems.Add(new ProgramProblem("2", "Is Prime Number", "Check if an integer is a prime number", testCases, 1, 50, 150));
             
             users = new List<User>();
             users.Add(new Admin("1", "Admin", "Admin", 1));
@@ -69,6 +75,13 @@ namespace LocalJudgingSystem
 
         public void logout() { 
             loginUser = null;
+        }
+
+        public void add_problem(string title, string content, List<TestCase> testCases, int difficulty,
+        int timeLimit, int memoryLimit)
+        {
+            int problemId = problems.Count + 1;
+            problems.Add(new ProgramProblem(problemId.ToString(), title, content, testCases, difficulty, timeLimit, memoryLimit));
         }
 
         public List<ProgramProblem> browse_problem_list() {

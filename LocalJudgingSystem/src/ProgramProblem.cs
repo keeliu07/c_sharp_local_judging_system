@@ -13,12 +13,13 @@ namespace LocalJudgingSystem.src
 {
     public class ProgramProblem
     {
-        protected string ID, title, content, author, test_input, test_output;
+        protected string ID, title, content, author;
         protected int trial, accepted, difficulty, timeLimit, memoryLimit;
         protected double acRate, tags;
         protected bool isLive;
+        protected List<TestCase> testCases;
 
-        public ProgramProblem(string ID, string title, string content, string test_input, string test_output, int difficulty,
+        public ProgramProblem(string ID, string title, string content,List<TestCase> testCases, int difficulty,
         int timeLimit, int memoryLimit) {
             this.ID = ID;
             this.title = title;
@@ -26,8 +27,7 @@ namespace LocalJudgingSystem.src
             this.difficulty = difficulty;
             this.timeLimit = timeLimit;
             this.memoryLimit = memoryLimit;
-            this.test_input = test_input;
-            this.test_output = test_output;
+            this.testCases = testCases;
             trial = 0;
             accepted = 0;
             isLive = true;
@@ -123,7 +123,15 @@ namespace LocalJudgingSystem.src
 
         public Boolean test_result(ProgramProblem problem, string result)
         {
-            return problem.test_output == result;
+            Boolean pass = true;
+            //foreach (var testcase in testCases)
+           // {
+            //    if(testcase[1] == result)
+            //    {
+            //        pass = pass && false;
+           //     }
+//}
+            return pass;
         }
 
         // compile time polymorphism
@@ -143,10 +151,7 @@ namespace LocalJudgingSystem.src
             this.timeLimit = timeLimit;
             this.memoryLimit = memoryLimit;
         }
-        public void edit_testcases(string test_input, string test_output) {
-            this.test_input = test_input;
-            this.test_output = test_output;
-        }
+
         public void edit_statistics(int trial, int accepted) {
             this.trial = trial;
         }
@@ -158,6 +163,11 @@ namespace LocalJudgingSystem.src
         public void add_accepted()
         {
             accepted++;
+        }
+
+        public List<TestCase> browse_test_cases()
+        {
+            return testCases;
         }
     }
 

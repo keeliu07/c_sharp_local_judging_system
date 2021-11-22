@@ -21,7 +21,7 @@
                     <GridViewColumn Header="Actions" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Edit" VerticalAlignment="Center"/>
+                                <Button Content="Edit" VerticalAlignment="Center" Click="onClickEditButton"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

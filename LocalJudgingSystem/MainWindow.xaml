@@ -24,7 +24,7 @@
             <Button x:Name="ViewProblemListButton" Grid.Column="0" Click="OnClickProblems" Visibility="Collapsed">
                 Problems
             </Button>
-            <Button x:Name="CreateProblemButton" Grid.Column="1" Click="OnClickProblems" Visibility="Collapsed">
+            <Button x:Name="CreateProblemButton" Grid.Column="1" Click="OnClickCreateProblem" Visibility="Collapsed">
                 Create Problem
             </Button>
             <Button x:Name="LoginButton" Grid.Column="6" Click="OnClickLogin">

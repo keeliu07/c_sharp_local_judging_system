@@ -70,6 +70,10 @@ namespace LocalJudgingSystem
 
         private void OnClickCreateProblem(object sender, RoutedEventArgs e)
         {
+            if (judgeSystem.LoginUser != null && judgeSystem.LoginUser.UserType == "Admin")
+            {
+                MainFrame.Content = new ProblemDetailsFormPage(judgeSystem);
+            }
         }
     }
 }

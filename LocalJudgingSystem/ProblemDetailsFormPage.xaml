@@ -9,6 +9,75 @@
       Title="ProblemDetailsFormPage">
 
     <Grid>
-        
+        <TextBlock x:Name="TitleBox" Text="Edit Problem" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="#333399" Margin="0,21,0,0" />
+        <Grid Width="600" Height="300" Margin="35,0,35,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15">Title</TextBlock>
+            <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15">Content</TextBlock>
+            <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15">Difficulty</TextBlock>
+            <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15">Time Limit</TextBlock>
+            <TextBlock Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15">Memory Limit</TextBlock>
+            <TextBlock Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15">Test Cases</TextBlock>
+
+            <TextBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="title" Width="300"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="content" Width="300"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="difficulty" Width="300"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="timelimit" Width="300"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="memorylimit" Width="300"></TextBox>
+            <Grid Grid.Column="1" Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Input</TextBlock>
+                        <TextBox x:Name="TestInputBox" Grid.Column="1" Width="100"></TextBox>
+                        <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Output</TextBlock>
+                        <TextBox x:Name="TestOutputBox" Grid.Column="3" Width="100"></TextBox>
+                    </Grid>
+                    <ListView Grid.Row="1" x:Name="TestCaseList">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Input" Width="150" DisplayMemberBinding="{Binding TestInput}"/>
+                                <GridViewColumn Header="Output" Width="150" DisplayMemberBinding="{Binding TestOutput}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Click="onClickAddTestCase">Add</Button>
+                    <Button Grid.Row="1" Click="onClickEditTestCase">Edit</Button>
+                    <Button Grid.Row="2" Click="onClickDeleteTestCase">Delete</Button>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" Margin="626,23,0,0" Height="32" Width="74" Click="onClickSubmitButton">Submit</Button>
     </Grid>
 </Page>

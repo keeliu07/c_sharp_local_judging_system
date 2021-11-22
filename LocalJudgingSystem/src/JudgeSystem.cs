@@ -27,7 +27,7 @@ namespace LocalJudgingSystem
 
             problems = new List<ProgramProblem>();
             List<TestCase> testCases = new List<TestCase>() ;
-            testCases.Add(new TestCase("N/A", "Hello World"));
+            testCases.Add(new TestCase("", "Hello World"));
             problems.Add(new ProgramProblem("1", "Print Hello World","Output text \"Hello World\" ", users[0], testCases, 0, 30, 100));
             
             testCases = new List<TestCase>();

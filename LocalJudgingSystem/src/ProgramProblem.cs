@@ -62,7 +62,9 @@ namespace LocalJudgingSystem.src
         { // read-only property
             get { 
                 if(trial == 0) return 0.0;
-                return accepted/trial; }
+                System.Diagnostics.Debug.WriteLine(accepted);
+                System.Diagnostics.Debug.WriteLine(trial);
+                return (double) accepted / (double)trial; }
         }
         public int Trial
         { // read-only property
@@ -106,34 +108,45 @@ namespace LocalJudgingSystem.src
             Boolean pass = false;
             if (output.Length == 0)
             {
-                output =  execute(problem);
-                pass = test_result(problem, output);
+                (output, pass) =  execute(problem);
             }
             return (output, pass);
         }
 
-        public string execute(ProgramProblem problem)
-        {
-            Process proc2 = new Process();
-            proc2.StartInfo.FileName = string.Format("E:\\problem{0}.exe", problem.ProblemID);
-            proc2.StartInfo.RedirectStandardOutput = true;
-            proc2.Start();
-            string result = proc2.StandardOutput.ReadToEnd();
-            System.Diagnostics.Debug.WriteLine(result);
-            return result;
-        }
-
-        public Boolean test_result(ProgramProblem problem, string result)
+        public (string, Boolean) execute(ProgramProblem problem)
         {
             Boolean pass = true;
-            //foreach (var testcase in testCases)
-           // {
-            //    if(testcase[1] == result)
-            //    {
-            //        pass = pass && false;
-           //     }
-//}
-            return pass;
+            string terminal = "";
+            foreach (var testcase in testCases){
+                Process proc2 = new Process();
+                proc2.StartInfo.FileName = string.Format("E:\\problem{0}.exe", problem.ProblemID);
+                proc2.StartInfo.RedirectStandardOutput = true;
+                proc2.StartInfo.RedirectStandardInput = true;
+                proc2.Start();
+                if (testcase.TestInput != "")
+                {
+                    proc2.StandardInput.WriteLine(testcase.TestInput);
+                    proc2.StandardInput.WriteLine(Environment.NewLine);
+                    while (proc2.StandardOutput.Peek() > -1)
+                    {
+                        //System.Diagnostics.Debug.WriteLine((char)proc2.StandardOutput.Read());
+                        proc2.StandardOutput.Read();
+                        if (proc2.StandardOutput.Peek() == ':')
+                        {
+                            //System.Diagnostics.Debug.WriteLine((char)proc2.StandardOutput.Read());
+                            proc2.StandardOutput.Read();
+                            break;
+                        }
+                    }
+                }
+                string result = proc2.StandardOutput.ReadLine();
+                terminal += result + "\n";
+                if (result != testcase.TestOutput)
+                { 
+                    pass = false;
+                }
+            }
+            return (terminal, pass);
         }
 
         // compile time polymorphism

@@ -34,7 +34,11 @@ namespace LocalJudgingSystem
             title.Text = problem.Title;
             content.Text = problem.Content;
             TestCaseList.ItemsSource = problem.browse_test_cases();
+            updateProblemInfo(problem);
+        }
 
+        private void updateProblemInfo(ProgramProblem problem)
+        {
             difficulty.Text = problem.Difficulty;
             timelimit.Text = problem.TimeLimit.ToString();
             memorylimit.Text = problem.MemoryLimit.ToString();
@@ -51,6 +55,7 @@ namespace LocalJudgingSystem
                 if (pass) problem.add_accepted();
                 TestResultBox.Text = string.Format("Pass or Not: {0}\n", pass);
                 Terminal.Text = output;
+                updateProblemInfo(problem);
             }
         }
         private void onUploadFile(object sender, RoutedEventArgs e)

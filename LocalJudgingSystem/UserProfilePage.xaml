@@ -9,6 +9,26 @@
       Title="UserProfilePage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <TextBlock>User</TextBlock>
+        <TextBlock Grid.Column="1" x:Name="username"></TextBlock>
+        <TextBlock Grid.Row="1"> Submitted Problems</TextBlock>
+        <ListView Grid.Column="1" Grid.Row="1" Name="SubmittedProblemList">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="#" Width="100" DisplayMemberBinding="{Binding ProblemID}"/>
+                    <GridViewColumn Header="Title" Width="400" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Level" Width="100" DisplayMemberBinding="{Binding Difficulty}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Page>

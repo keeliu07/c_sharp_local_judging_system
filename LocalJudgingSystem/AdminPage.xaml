@@ -9,7 +9,7 @@
       Title="AdminPage">
 
     <Grid>
-        <ListView Name="AdminProblemList">
+        <ListView Name="AdminProblemList" MouseDoubleClick="AdminProblemList_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="#" Width="80" DisplayMemberBinding="{Binding ProblemID}"/>

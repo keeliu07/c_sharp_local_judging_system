@@ -13,13 +13,14 @@ namespace LocalJudgingSystem.src
 {
     public class ProgramProblem
     {
-        protected string ID, title, content, author;
+        protected string ID, title, content;
+        protected User author;
         protected int trial, accepted, difficulty, timeLimit, memoryLimit;
         protected double acRate, tags;
         protected bool isLive;
         protected List<TestCase> testCases;
 
-        public ProgramProblem(string ID, string title, string content,List<TestCase> testCases, int difficulty,
+        public ProgramProblem(string ID, string title, string content, User author, List<TestCase> testCases, int difficulty,
         int timeLimit, int memoryLimit) {
             this.ID = ID;
             this.title = title;
@@ -28,6 +29,7 @@ namespace LocalJudgingSystem.src
             this.timeLimit = timeLimit;
             this.memoryLimit = memoryLimit;
             this.testCases = testCases;
+            this.author = author;
             trial = 0;
             accepted = 0;
             isLive = true;
@@ -37,7 +39,7 @@ namespace LocalJudgingSystem.src
         public string ProblemID { get { return ID; } } // read-only property
         public string Title { get {return title;} } // read-only property
         public string Content { get { return content; } } // read-only property
-        public string Author { get { return author; } } // read-only property
+        public User Author { get { return author; } } // read-only property
         public string Difficulty
         { // Data abstraction, read-only property
             get

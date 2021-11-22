@@ -26,6 +26,8 @@ namespace LocalJudgingSystem
         {
             InitializeComponent();
             this.judgeSystem = judgeSystem;
+            username.Text = judgeSystem.LoginUser.Username;
+            SubmittedProblemList.ItemsSource = judgeSystem.LoginUser.SubmittedProblems;
         }
     }
 }

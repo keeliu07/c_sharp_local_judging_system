@@ -21,6 +21,11 @@ namespace LocalJudgingSystem.src
             submitted_problems = new List<ProgramProblem>();
         }
         // runtime polymorphism
+
+        public List<ProgramProblem> SubmittedProblems
+        {
+            get { return submitted_problems; }
+        }
         public string Username { get { return name; } }
         public string Password { get { return password; } }
         public string UserType
@@ -46,7 +51,10 @@ namespace LocalJudgingSystem.src
     {
         public Admin(string ID, string name, string password, int usertype) : base(ID, name, password, usertype){ } // constructor
         public override void edit_profile(string name, string password) { }
-        void create_problem() { }
+        public ProgramProblem create_problem(string ID, string title, string content,User author, List<TestCase> testCases, int difficulty, int timeLimit, int memoryLimit)
+        {
+            return new ProgramProblem(ID, title, content, author, testCases, difficulty, timeLimit, memoryLimit);
+        }
         void check_record() { }
         void view_statistics() { }
     }

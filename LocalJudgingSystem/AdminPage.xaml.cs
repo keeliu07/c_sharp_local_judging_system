@@ -38,5 +38,12 @@ namespace LocalJudgingSystem
             ProblemDetailsFormPage problemDetailsFormPage = new ProblemDetailsFormPage(judgeSystem, selectedProblem);
             NavigationService.Navigate(problemDetailsFormPage);
         }
+
+        private void AdminProblemList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ProgramProblem selectedProblem = judgeSystem.browse_problem(AdminProblemList.SelectedIndex);
+            ProblemPage problemPage = new ProblemPage(judgeSystem, selectedProblem);
+            NavigationService.Navigate(problemPage);
+        }
     }
 }

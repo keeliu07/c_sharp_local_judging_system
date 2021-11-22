@@ -71,9 +71,16 @@ namespace LocalJudgingSystem
             }
             else if (isCreation && int.TryParse(timelimit.Text, out int time2) && int.TryParse(memorylimit.Text, out int memory2))
             {
-                List<TestCase> testCases = new List<TestCase>();
-                testCases.Add(new TestCase("N/A", "Hello World"));
-                judgeSystem.add_problem(title.Text, content.Text, testCases, diff, time2, memory2);
+                User? user = judgeSystem.LoginUser;
+                if (user != null && user.UserType == "Admin")
+                {
+                    Admin? admin = user as Admin;
+                    if (admin != null){
+                        int problemId = judgeSystem.browse_problem_list().Count + 1;
+                        ProgramProblem problem = admin.create_problem(problemId.ToString(), title.Text, content.Text, admin, testCases, diff, time2, memory2);
+                        judgeSystem.add_problem(problem);
+                    }
+                }
                 MainWindowObj.MainFrame.Content = new AdminPage(judgeSystem);
             }
             else

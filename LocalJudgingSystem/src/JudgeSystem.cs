@@ -11,35 +11,35 @@ namespace LocalJudgingSystem
     {
         protected List<ProgramProblem> problems;
         protected List<User> users;
-        protected User? loginUser;
-        public User? LoginUser { get { return loginUser; } } // read-only property
+        protected dynamic? loginUser;
+        public dynamic? LoginUser { get { return loginUser; } } // read-only property
         
         public JudgeSystem()
         {
             initialization();
         } // constructor
         private void initialization() {
-            problems = new List<ProgramProblem>();
-            List<TestCase> testCases = new List<TestCase>() ;
-            testCases.Add(new TestCase("N/A", "Hello World"));
-            problems.Add(new ProgramProblem("1", "Print Hello World", "Output text \"Hello World\" ", testCases, 0, 30, 100));
-            
-            testCases = new List<TestCase>();
-            testCases.Add(new TestCase( "3", "Prime"));
-            testCases.Add(new TestCase("2", "Not Prime"));
-            problems.Add(new ProgramProblem("2", "Is Prime Number", "Check if an integer is a prime number", testCases, 1, 50, 150));
-            
             users = new List<User>();
             users.Add(new Admin("1", "Admin", "Admin", 1));
             users.Add(new Student("2", "ChanSiuMing", "20000101", 2));
             users.Add(new Student("3", "ChanTaiMing", "asdfghjkl;’", 2));
             users.Add(new Student("4", "CatChu", "catcatcat", 2));
+
+            problems = new List<ProgramProblem>();
+            List<TestCase> testCases = new List<TestCase>() ;
+            testCases.Add(new TestCase("N/A", "Hello World"));
+            problems.Add(new ProgramProblem("1", "Print Hello World","Output text \"Hello World\" ", users[0], testCases, 0, 30, 100));
+            
+            testCases = new List<TestCase>();
+            testCases.Add(new TestCase( "3", "Prime"));
+            testCases.Add(new TestCase("2", "Not Prime"));
+            problems.Add(new ProgramProblem("2", "Is Prime Number", "Check if an integer is a prime number", users[0], testCases, 1, 50, 150));
         }
 
-        private User? createUser(string username, string password, int usertype)
+        private dynamic createUser(string username, string password, int usertype)
         {
             int user_id = users.Count + 1;
-            User? newUser = null;
+            dynamic? newUser = null;
             switch (usertype)
             {
                 case 1:
@@ -77,11 +77,9 @@ namespace LocalJudgingSystem
             loginUser = null;
         }
 
-        public void add_problem(string title, string content, List<TestCase> testCases, int difficulty,
-        int timeLimit, int memoryLimit)
+        public void add_problem(ProgramProblem problem)
         {
-            int problemId = problems.Count + 1;
-            problems.Add(new ProgramProblem(problemId.ToString(), title, content, testCases, difficulty, timeLimit, memoryLimit));
+            problems.Add(problem);
         }
 
         public List<ProgramProblem> browse_problem_list() {
@@ -91,7 +89,6 @@ namespace LocalJudgingSystem
         public ProgramProblem browse_problem(int index) {
             return problems[index];
         }
-        public void browse_statistics() { }
 
     }
 }

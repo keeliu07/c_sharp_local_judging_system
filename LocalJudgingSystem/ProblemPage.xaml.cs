@@ -30,6 +30,16 @@ namespace LocalJudgingSystem
             InitializeComponent();
             this.judgeSystem = judgeSystem;
             this.problem = problem;
+            problemID.Text = problem.ProblemID;
+            title.Text = problem.Title;
+            content.Text = problem.Content;
+            TestCaseList.ItemsSource = problem.browse_test_cases();
+
+            difficulty.Text = problem.Difficulty;
+            timelimit.Text = problem.TimeLimit.ToString();
+            memorylimit.Text = problem.MemoryLimit.ToString();
+            ACrate.Text = problem.ACRate.ToString();
+            trials.Text = problem.Trial.ToString();
         }
         private void onSubmitProblem(object sender, RoutedEventArgs e)
         {

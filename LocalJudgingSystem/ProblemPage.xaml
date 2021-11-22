@@ -24,8 +24,68 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >Problem ID</TextBlock>
+                <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" >Title</TextBlock>
+                <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" >Content</TextBlock>
+                <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" >Test Cases</TextBlock>
+
+                <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="problemID" Width="90"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="title" Width="300"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="content" Width="300"></TextBlock>
+                <ListView Grid.Column="1" Grid.Row="3" x:Name="TestCaseList" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="False">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Input" Width="235" DisplayMemberBinding="{Binding TestInput}"/>
+                            <GridViewColumn Header="Output" Width="235" DisplayMemberBinding="{Binding TestOutput}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
             <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1,0,0,0"/>
-            <TextBlock Grid.Column="1" Text="   Information"/>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Information" FontSize="18"/>
+                <Grid Grid.Column="1" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >Difficulty</TextBlock>
+                    <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" >Time Limit</TextBlock>
+                    <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" >Memory Limit</TextBlock>
+                    <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" >Accepted Rate</TextBlock>
+                    <TextBlock Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" >Trials</TextBlock>
+
+
+                    <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="difficulty" Width="90"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="timelimit" Width="90"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="memorylimit" Width="90"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="ACrate" Width="90"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" x:Name="trials" Width="90"></TextBlock>
+                </Grid>
+            </Grid>
+
         </Grid>
         <Grid Grid.Row="1" Background="GhostWhite" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -48,8 +108,6 @@
             </Grid>
             <TextBox Grid.Row="1" x:Name="CodeEditor" TextWrapping="Wrap"
               AcceptsReturn="True" VerticalScrollBarVisibility="Visible">
-                This TextBox will allow the user to enter multiple lines of text.  When the RETURN key is pressed, 
-                or when typed text reaches the edge of the text box, a new line is automatically inserted.
             </TextBox>
             <TextBlock Grid.Row="0" Grid.Column="1" x:Name="TestResultBox"></TextBlock>
             <TextBox Grid.Row="1" Grid.Column="1" x:Name="Terminal" TextWrapping="Wrap"
